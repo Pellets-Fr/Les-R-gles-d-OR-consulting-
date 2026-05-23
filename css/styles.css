@@ -178,6 +178,20 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a:hover { color: var(--blue-500); }
 
+/* Lien cyber dans la nav */
+.nav-link-cyber {
+  color: var(--blue-600) !important;
+  font-weight: 700 !important;
+}
+.nav-link-cyber:hover { color: var(--blue-800) !important; }
+
+/* Sticky CTA double boutons mobile */
+.sticky-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+
 /* Logo image nav */
 .nav-logo-img {
   height: 40px;
