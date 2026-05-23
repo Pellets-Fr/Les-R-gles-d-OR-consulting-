@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H Courtage AI – Analyse intelligente de votre assurance | Houssem El Ghoul</title>
+  <meta name="description" content="Découvrez notre expérience AI interactive : obtenez une analyse instantanée de votre profil d'assurance auto, habitation ou cyber. Économisez jusqu'à 1 037 $ CAD." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #0b1020;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    /* ── Top bar ──────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .topbar-logo {
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-logo::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #22d3ee, #4f46e5);
+      border-radius: 8px;
+    }
+    .progress {
+      flex: 1;
+      height: 7px;
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #22d3ee, #4f46e5);
+      border-radius: 20px;
+      transition: width 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    .step-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      white-space: nowrap;
+      min-width: 38px;
+      text-align: right;
+    }
+    .topbar-back {
+      font-size: 13px;
+      color: #64748b;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color .2s;
+    }
+    .topbar-back:hover { color: #94a3b8; }
+
+    /* ── Main layout ──────────────────────────────────── */
+    .app {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ── Glass card ───────────────────────────────────── */
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 28px 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.09);
+      margin-top: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .glass h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .glass h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .glass p  { font-size: 14px; color: #94a3b8; margin-bottom: 16px; }
+
+    /* ── Section visibility ───────────────────────────── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Type selector grid ───────────────────────────── */
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    @media (max-width: 420px) { .type-grid { grid-template-columns: 1fr; } }
+
+    .type-card {
+      padding: 20px 12px;
+      background: #111827;
+      border-radius: 14px;
+      cursor: pointer;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: border-color .25s, transform .2s, background .2s;
+      user-select: none;
+    }
+    .type-card:hover {
+      border-color: #4f46e5;
+      background: #1a2035;
+      transform: translateY(-2px);
+    }
+    .type-card-icon { font-size: 32px; margin-bottom: 10px; }
+    .type-card-label { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+
+    /* ── Chat bubble ──────────────────────────────────── */
+    .chatbox { display: flex; gap: 14px; align-items: flex-start; }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .chat-bubble {
+      background: #1e293b;
+      border-radius: 0 14px 14px 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #e2e8f0;
+      min-height: 52px;
+      flex: 1;
+    }
+
+    /* ── Cursor blink ─────────────────────────────────── */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #22d3ee;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 0.9s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ── Text input ───────────────────────────────────── */
+    .text-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #111827;
+      border: 1.5px solid #1e293b;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-family: inherit;
+      margin-top: 4px;
+      transition: border-color .2s;
+      resize: vertical;
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: #4f46e5;
+    }
+    .text-input::placeholder { color: #475569; }
+    label.field-label {
+      display: block;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    /* ── Buttons ──────────────────────────────────────── */
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: 0;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: opacity .2s, transform .15s;
+    }
+    button:active { transform: scale(.97); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      padding: 13px 22px;
+      margin-top: 16px;
+    }
+    .btn-primary:hover { opacity: .88; }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 13px 22px;
+      margin-top: 16px;
+      margin-left: 10px;
+    }
+    .btn-secondary:hover { background: #263348; }
+
+    .btn-full { width: 100%; margin-left: 0; }
+
+    /* ── Loader pulse dots ────────────────────────────── */
+    .loader-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #22d3ee;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+    .dot:nth-child(2) { animation-delay: .2s; background: #818cf8; }
+    .dot:nth-child(3) { animation-delay: .4s; background: #4f46e5; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(.7); opacity: .5; }
+      40%           { transform: scale(1.2); opacity: 1; }
+    }
+
+    /* ── Analysis steps ───────────────────────────────── */
+    .analysis-steps { margin: 16px 0; }
+    .analysis-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      font-size: 14px;
+      color: #64748b;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color .3s;
+    }
+    .analysis-step:last-child { border-bottom: none; }
+    .analysis-step.done { color: #e2e8f0; }
+    .analysis-step .step-status {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      transition: background .3s;
+    }
+    .analysis-step.done .step-status {
+      background: #22c55e;
+      color: #fff;
+    }
+    .analysis-step.running .step-status {
+      background: #4f46e5;
+      animation: pulse-ring .8s infinite alternate;
+    }
+    @keyframes pulse-ring {
+      from { box-shadow: 0 0 0 0 rgba(79,70,229,.5); }
+      to   { box-shadow: 0 0 0 6px rgba(79,70,229,0); }
+    }
+
+    /* ── KPI tiles ────────────────────────────────────── */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    @media (max-width: 400px) { .kpis { grid-template-columns: 1fr; } }
+
+    .tile {
+      background: #111827;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .tile strong { display: block; font-size: 15px; color: #e2e8f0; margin-bottom: 2px; }
+
+    /* ── ROI comparison ───────────────────────────────── */
+    .compare-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      align-items: stretch;
+    }
+    @media (max-width: 400px) { .compare-row { flex-direction: column; } }
+
+    .compare-col {
+      flex: 1;
+      background: #111827;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .compare-col.highlight {
+      background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(34,197,94,.05));
+      border: 1.5px solid rgba(34,197,94,.35);
+    }
+    .compare-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
+    .compare-amount { font-size: 24px; font-weight: 800; }
+    .compare-amount.old { color: #ef4444; }
+    .compare-amount.new { color: #22c55e; }
+    .roi-amount { font-size: 28px; font-weight: 800; color: #22c55e; }
+    .roi-label  { font-size: 12px; color: #22c55e; margin-top: 4px; }
+
+    .savings-badge {
+      display: inline-block;
+      background: rgba(34,197,94,.2);
+      color: #22c55e;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 12px;
+    }
+
+    /* ── Contact section ──────────────────────────────── */
+    .broker-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #111827;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .broker-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #4f46e5;
+      flex-shrink: 0;
+    }
+    .broker-name { font-weight: 700; font-size: 15px; }
+    .broker-title { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    @media (max-width: 380px) { .action-row { flex-direction: column; } }
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .action-btn:active { transform: scale(.97); }
+    .action-btn.call { background: linear-gradient(135deg, #4f46e5, #6366f1); color: #fff; }
+    .action-btn.rdv  { background: #1e293b; color: #e2e8f0; }
+    .action-btn:hover { opacity: .88; }
+    .action-btn.full {
+      width: 100%;
+      display: flex;
+      margin-top: 10px;
+      background: #1e293b;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    /* ── Completion badge ─────────────────────────────── */
+    .completion-badge {
+      text-align: center;
+      margin-top: 28px;
+    }
+    .completion-icon {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .completion-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .completion-sub {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* ── Fade-in animation for cards/sections ─────────── */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section.active .glass {
+      animation: fadeSlideUp .35s ease forwards;
+    }
+
+    /* ── Responsive spacer ────────────────────────────── */
+    .spacer { height: 12px; }
+
+    /* ── Hint text ────────────────────────────────────── */
+    .hint {
+      font-size: 12px;
+      color: #475569;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top bar ─────────────────────────────────────── -->
+  <div class="topbar">
+    <a href="index.html" class="topbar-logo">H Courtage AI</a>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="step-label" id="stepLabel">0 %</div>
+    <a href="index.html" class="topbar-back">← Retour</a>
+  </div>
+
+  <!-- ── App wrapper ─────────────────────────────────── -->
+  <div class="app">
+
+    <!-- ═══ STEP 1 – Type selector ══════════════════════ -->
+    <div class="section active" id="step1">
+      <div class="glass">
+        <h2>Votre situation en quelques clics</h2>
+        <p>Sélectionnez le type d'assurance que vous souhaitez analyser.</p>
+        <div class="type-grid">
+          <div class="type-card" onclick="nextStep(2,'Auto')" tabindex="0" role="button"
+               onkeydown="if(event.key==='Enter')nextStep(2,'Auto')">
+            <div class="type-card-icon">🚗</div>
+            <div class="type-card-label">Automobile</div>
+          </div>
+          <div class="type-card" onclick="nextStep(2,'Habitation')" tabindex="0" role="button"
+               onkeydown="if(event.key==='Enter')nextStep(2,'Habitation')">
+            <div class="type-card-icon">🏠</div>
+            <div class="type-card-label">Habitation</div>
+          </div>
+          <div class="type-card" onclick="nextStep(2,'Cyber')" tabindex="0" role="button"
+               onkeydown="if(event.key==='Enter')nextStep(2,'Cyber')">
+            <div class="type-card-icon">🛡</div>
+            <div class="type-card-label">Cyber</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 2 – AI typing ═══════════════════════════ -->
+    <div class="section" id="step2">
+      <div class="glass">
+        <div class="chatbox">
+          <div class="avatar">H</div>
+          <div class="chat-bubble">
+            <span id="chatText"></span><span class="cursor" id="cursor"></span>
+          </div>
+        </div>
+        <button class="btn-primary" id="continueBtn2" onclick="nextStep(3)"
+                style="display:none;">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3 – Qualification ════════════════════════ -->
+    <div class="section" id="step3">
+      <div class="glass">
+        <h3>Qualification de votre profil</h3>
+        <p>Quelques mots suffisent — votre courtier s'occupe du reste.</p>
+        <label class="field-label">Décrivez brièvement votre situation actuelle</label>
+        <textarea class="text-input" id="situationInput" rows="4"
+                  placeholder="Ex. : J'ai une Toyota RAV4 2022, 2 conducteurs, renouvellement en août..."></textarea>
+        <p class="hint">🔒 Informations protégées — utilisées uniquement pour votre soumission.</p>
+        <button class="btn-primary btn-full" onclick="nextStep(4)">Analyser mon profil →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 4 – Loader / analysis ════════════════════ -->
+    <div class="section" id="step4">
+      <div class="glass">
+        <h3 id="analysisTitle">Analyse en cours…</h3>
+        <p id="analysisSub">Connexion aux assureurs partenaires</p>
+        <div class="loader-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="analysis-steps" id="analysisSteps">
+          <div class="analysis-step" id="as1">
+            <div class="step-status">1</div>
+            <span>Récupération de votre profil de risque</span>
+          </div>
+          <div class="analysis-step" id="as2">
+            <div class="step-status">2</div>
+            <span>Comparaison auprès de 10+ assureurs</span>
+          </div>
+          <div class="analysis-step" id="as3">
+            <div class="step-status">3</div>
+            <span>Calcul des économies potentielles</span>
+          </div>
+          <div class="analysis-step" id="as4">
+            <div class="step-status">4</div>
+            <span>Génération du rapport personnalisé</span>
+          </div>
+        </div>
+        <button class="btn-primary btn-full" id="viewResultBtn" style="display:none;"
+                onclick="nextStep(5)">Voir mon résultat →</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 5 – ROI comparison ════════════════════════ -->
+    <div class="section" id="step5">
+      <div class="glass">
+        <h3>Résultat de votre analyse</h3>
+        <p>Voici ce que votre courtier a trouvé pour votre profil <strong id="selectedLabel"></strong>.</p>
+
+        <div class="compare-row">
+          <div class="compare-col">
+            <div class="compare-label">Prime actuelle</div>
+            <div class="compare-amount old">5 186 $</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">/ an</div>
+          </div>
+          <div class="compare-col highlight">
+            <div class="compare-label">Meilleure offre</div>
+            <div class="compare-amount new">4 149 $</div>
+            <div style="font-size:11px;color:#22c55e;margin-top:4px;">/ an</div>
+          </div>
+          <div class="compare-col" style="background:rgba(34,197,94,.08);border:1.5px solid rgba(34,197,94,.2);">
+            <div class="compare-label">Économie</div>
+            <div class="roi-amount"><span id="roi">0</span> $</div>
+            <div class="roi-label">CAD / an</div>
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="kpis">
+          <div class="tile"><strong>📊 Optimisation</strong>Couverture améliorée détectée</div>
+          <div class="tile"><strong>⚠️ Risques</strong>2 lacunes identifiées</div>
+          <div class="tile"><strong>💰 Économies</strong>Sur prime annuelle</div>
+          <div class="tile"><strong>🛡 Cyber</strong>Extension recommandée</div>
+        </div>
+
+        <span class="savings-badge">✓ Analyse gratuite · Sans engagement</span>
+
+        <button class="btn-primary btn-full" onclick="nextStep(6)" style="margin-top:20px;">
+          Parler à mon courtier →
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 6 – Contact courtier ═════════════════════ -->
+    <div class="section" id="step6">
+      <div class="glass">
+        <div class="completion-badge">
+          <span class="completion-icon">🎉</span>
+          <div class="completion-title">Votre dossier est prêt !</div>
+          <div class="completion-sub">Houssem El Ghoul vous accompagne pour finaliser votre soumission.</div>
+        </div>
+
+        <div class="broker-card">
+          <img src="https://hcourtage.ca/Particuliers/img/houssem.png"
+               alt="Houssem El Ghoul"
+               class="broker-avatar"
+               onerror="this.style.display='none'"/>
+          <div>
+            <div class="broker-name">Houssem El Ghoul</div>
+            <div class="broker-title">Courtier certifié · Affilié au Groupe Jetté Assurances inc.</div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <a href="tel:4184760666" class="action-btn call">
+            <span>📞</span> Appeler
+          </a>
+          <a href="index.html#contact" class="action-btn rdv">
+            <span>📅</span> Prendre RDV
+          </a>
+        </div>
+        <a href="index.html#contact" class="action-btn full">
+          ✉️ Envoyer un message →
+        </a>
+
+        <div style="text-align:center;margin-top:20px;">
+          <a href="index.html" style="font-size:13px;color:#475569;text-decoration:none;">
+            ← Retour à l'accueil
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.app -->
+
+  <script>
+    let step = 1;
+    let selected = '';
+
+    /* ── Progress bar & section switcher ────────────── */
+    function update() {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+      const pct = Math.round((step - 1) / 5 * 100);
+      document.getElementById('bar').style.width = pct + '%';
+      document.getElementById('stepLabel').textContent = pct + ' %';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── Typewriter ─────────────────────────────────── */
+    function typeWriter(text, elId, cursorId, i, callback) {
+      const el  = document.getElementById(elId);
+      const cur = document.getElementById(cursorId);
+      if (i === 0) el.textContent = '';
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        setTimeout(() => typeWriter(text, elId, cursorId, i + 1, callback), 28);
+      } else {
+        if (cur)  cur.style.display = 'none';
+        if (callback) callback();
+      }
+    }
+
+    /* ── Step runner ────────────────────────────────── */
+    function nextStep(s, val) {
+      if (val) selected = val;
+
+      /* Step 2: AI chat typing */
+      if (s === 2) {
+        step = 2;
+        update();
+        const msgs = {
+          Auto:      'Parfait ! J'analyse votre profil automobile et je contacte nos assureurs partenaires pour trouver les meilleures offres du marché…',
+          Habitation:'Super ! Je prépare l'analyse de votre couverture habitation. Connexion aux assureurs partenaires en cours…',
+          Cyber:     'Excellent choix. J'évalue votre exposition cyber et compare les polices disponibles auprès de nos partenaires spécialisés…'
+        };
+        const msg = msgs[selected] || msgs['Auto'];
+        document.getElementById('continueBtn2').style.display = 'none';
+        document.getElementById('cursor').style.display = 'inline-block';
+        typeWriter(msg, 'chatText', 'cursor', 0, () => {
+          document.getElementById('continueBtn2').style.display = 'inline-block';
+        });
+        return; // update() already called
+      }
+
+      /* Step 4: animated analysis steps */
+      if (s === 4) {
+        step = 4;
+        update();
+        document.getElementById('viewResultBtn').style.display = 'none';
+        document.getElementById('analysisTitle').textContent = 'Analyse en cours…';
+        document.getElementById('analysisSub').textContent = 'Connexion aux assureurs partenaires';
+
+        const ids = ['as1','as2','as3','as4'];
+        const labels = [
+          'Récupération de votre profil de risque',
+          'Comparaison auprès de 10+ assureurs',
+          'Calcul des économies potentielles',
+          'Génération du rapport personnalisé'
+        ];
+
+        // Reset
+        ids.forEach((id, idx) => {
+          const el = document.getElementById(id);
+          el.className = 'analysis-step';
+          el.querySelector('.step-status').textContent = idx + 1;
+        });
+
+        let current = 0;
+        function runStep() {
+          if (current >= ids.length) {
+            document.getElementById('analysisTitle').textContent = 'Analyse terminée ✓';
+            document.getElementById('analysisSub').textContent = 'Rapport prêt — économie de 1 037 $ détectée';
+            document.getElementById('viewResultBtn').style.display = 'block';
+            return;
+          }
+          const el = document.getElementById(ids[current]);
+          el.classList.add('running');
+          el.querySelector('.step-status').textContent = '…';
+          setTimeout(() => {
+            el.classList.remove('running');
+            el.classList.add('done');
+            el.querySelector('.step-status').textContent = '✓';
+            current++;
+            setTimeout(runStep, 280);
+          }, 700 + current * 120);
+        }
+        setTimeout(runStep, 400);
+        return;
+      }
+
+      /* Step 5: ROI counter */
+      if (s === 5) {
+        step = 5;
+        update();
+        document.getElementById('selectedLabel').textContent = selected;
+        let v = 0;
+        const target = 1037;
+        const interval = setInterval(() => {
+          v += 31;
+          if (v >= target) { v = target; clearInterval(interval); }
+          document.getElementById('roi').textContent = v.toLocaleString('fr-CA');
+        }, 22);
+        return;
+      }
+
+      step = s;
+      update();
+    }
+
+    /* ── Init ────────────────────────────────────────── */
+    update();
+  </script>
+
+</body>
+</html>
