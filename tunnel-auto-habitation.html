@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soumission assurance auto & habitation – Les Règles d'OR Consulting</title>
+  <meta name="description" content="Obtenez votre soumission d'assurance auto et habitation. Comparez les meilleures offres et économisez avec un vrai courtier." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="tunnel-page">
+
+  <header class="tunnel-header">
+    <div class="container tunnel-header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">Les Règles d'<strong>OR</strong> Consulting</span>
+      </a>
+      <div class="tunnel-header-right">
+        <span class="lock-badge">🔒 Vos données sont protégées</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="tunnel-main">
+    <div class="container tunnel-container">
+
+      <!-- Barre de progression -->
+      <div class="tunnel-progress">
+        <div class="progress-steps" id="progress-steps-ah">
+          <div class="progress-step active" data-step="1">
+            <div class="progress-dot"></div>
+            <span>Profil</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="2">
+            <div class="progress-dot"></div>
+            <span>Véhicule(s)</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="3">
+            <div class="progress-dot"></div>
+            <span>Résidence</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="4">
+            <div class="progress-dot"></div>
+            <span>Documents</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="5">
+            <div class="progress-dot"></div>
+            <span>Confirmation</span>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="ah-progress-bar" style="width:20%"></div>
+        </div>
+      </div>
+
+      <div class="tunnel-layout">
+        <div class="tunnel-form-area">
+
+          <!-- ÉTAPE 1 : Profil conducteur -->
+          <div class="tunnel-step active" id="ah-step-1">
+            <div class="step-header">
+              <div class="step-badge">Étape 1 sur 5</div>
+              <h1 class="step-title">Votre profil</h1>
+              <p class="step-subtitle">Dites-nous ce que vous souhaitez assurer pour adapter votre soumission.</p>
+            </div>
+            <form class="step-form" id="ah-form-step-1" novalidate>
+
+              <div class="form-group">
+                <label>Qu'est-ce que vous souhaitez assurer&nbsp;? <span class="required">*</span></label>
+                <div class="radio-card-grid">
+                  <label class="radio-card">
+                    <input type="radio" name="type-assurance" value="auto" required />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🚗</span>
+                      <strong>Automobile</strong>
+                      <span>Mon véhicule seulement</span>
+                    </div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="type-assurance" value="habitation" />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🏠</span>
+                      <strong>Habitation</strong>
+                      <span>Ma résidence seulement</span>
+                    </div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="type-assurance" value="les-deux" />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🏡</span>
+                      <strong>Auto + Habitation</strong>
+                      <span>Les deux (meilleur prix)</span>
+                    </div>
+                  </label>
+                </div>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ah-prenom">Prénom <span class="required">*</span></label>
+                  <input type="text" id="ah-prenom" name="prenom" placeholder="Marc" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ah-nom">Nom <span class="required">*</span></label>
+                  <input type="text" id="ah-nom" name="nom" placeholder="Tremblay" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ah-email">Courriel <span class="required">*</span></label>
+                  <input type="email" id="ah-email" name="email" placeholder="marc@exemple.com" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ah-tel">Téléphone</label>
+                  <input type="tel" id="ah-tel" name="telephone" placeholder="(514) 555-1234" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ah-naissance">Date de naissance <span class="required">*</span></label>
+                  <input type="date" id="ah-naissance" name="date-naissance" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ah-ville">Ville de résidence <span class="required">*</span></label>
+                  <input type="text" id="ah-ville" name="ville" placeholder="Ex. : Laval, Québec" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="step-nav">
+                <span></span>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 2 : Véhicule(s) -->
+          <div class="tunnel-step" id="ah-step-2">
+            <div class="step-header">
+              <div class="step-badge">Étape 2 sur 5</div>
+              <h1 class="step-title">Votre ou vos véhicules</h1>
+              <p class="step-subtitle">Indiquez les détails de chaque véhicule à assurer.</p>
+            </div>
+            <form class="step-form" id="ah-form-step-2" novalidate>
+
+              <div id="vehicules-container">
+                <!-- Véhicule 1 -->
+                <div class="vehicule-block" id="vehicule-1">
+                  <div class="vehicule-block-header">
+                    <h4>Véhicule 1</h4>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="ah-annee-1">Année <span class="required">*</span></label>
+                      <input type="number" id="ah-annee-1" name="vehicule-1-annee" placeholder="2022" min="1990" max="2026" required />
+                      <span class="field-error" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                      <label for="ah-marque-1">Marque <span class="required">*</span></label>
+                      <input type="text" id="ah-marque-1" name="vehicule-1-marque" placeholder="Ex. : Toyota" required />
+                      <span class="field-error" aria-live="polite"></span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="ah-modele-1">Modèle <span class="required">*</span></label>
+                      <input type="text" id="ah-modele-1" name="vehicule-1-modele" placeholder="Ex. : RAV4" required />
+                      <span class="field-error" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                      <label for="ah-usage-1">Usage principal</label>
+                      <select id="ah-usage-1" name="vehicule-1-usage">
+                        <option value="plaisir">Plaisir / personnel</option>
+                        <option value="travail">Travail (bureau distant)</option>
+                        <option value="commercial">Commercial / livraison</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="ah-km-1">Kilométrage annuel estimé</label>
+                      <select id="ah-km-1" name="vehicule-1-km">
+                        <option>Moins de 10 000 km</option>
+                        <option>10 000 à 20 000 km</option>
+                        <option>20 000 à 30 000 km</option>
+                        <option>Plus de 30 000 km</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="ah-financement-1">Financement / leasing</label>
+                      <select id="ah-financement-1" name="vehicule-1-financement">
+                        <option value="non">Non, je suis propriétaire</option>
+                        <option value="financement">Oui, financement bancaire</option>
+                        <option value="leasing">Oui, location longue durée</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-outline btn-sm" id="add-vehicule-btn" onclick="addVehicule()">
+                + Ajouter un véhicule
+              </button>
+
+              <div class="form-group" style="margin-top: 1.5rem;">
+                <label>Antécédents de conduite <span class="required">*</span></label>
+                <div class="radio-inline-grid">
+                  <label class="radio-inline">
+                    <input type="radio" name="antecedents" value="propres" required />
+                    <span>✅ Aucun accident ni infraction (3 ans)</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="antecedents" value="mineurs" />
+                    <span>⚠️ Infractions mineures</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="antecedents" value="accident" />
+                    <span>🚨 Accident(s) déclaré(s)</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="antecedents" value="non-concerne" />
+                    <span>➡️ Non concerné (habitation seulement)</span>
+                  </label>
+                </div>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="ahGoToStep(1)">← Retour</button>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 3 : Résidence -->
+          <div class="tunnel-step" id="ah-step-3">
+            <div class="step-header">
+              <div class="step-badge">Étape 3 sur 5</div>
+              <h1 class="step-title">Votre résidence</h1>
+              <p class="step-subtitle">Décrivez votre résidence pour obtenir la meilleure couverture habitation.</p>
+            </div>
+            <form class="step-form" id="ah-form-step-3" novalidate>
+              <div class="form-group">
+                <label>Type de résidence <span class="required">*</span></label>
+                <div class="radio-card-grid">
+                  <label class="radio-card">
+                    <input type="radio" name="type-residence" value="maison" required />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🏠</span>
+                      <strong>Maison</strong>
+                    </div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="type-residence" value="condo" />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🏢</span>
+                      <strong>Condo</strong>
+                    </div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="type-residence" value="logement" />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🏘️</span>
+                      <strong>Logement locatif</strong>
+                    </div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="type-residence" value="chalet" />
+                    <div class="radio-card-inner">
+                      <span class="radio-card-icon">🌲</span>
+                      <strong>Chalet / saisonnier</strong>
+                    </div>
+                  </label>
+                </div>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group" id="statut-proprio-group">
+                <label for="ah-statut">Vous êtes… <span class="required">*</span></label>
+                <select id="ah-statut" name="statut-proprio" required>
+                  <option value="">-- Sélectionnez --</option>
+                  <option value="proprietaire">Propriétaire</option>
+                  <option value="locataire">Locataire</option>
+                  <option value="co-proprietaire">Copropriétaire</option>
+                </select>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ah-annee-construction">Année de construction approximative</label>
+                  <input type="number" id="ah-annee-construction" name="annee-construction" placeholder="Ex. : 1985" min="1900" max="2026" />
+                </div>
+                <div class="form-group">
+                  <label for="ah-superficie">Superficie (pi²) approx.</label>
+                  <input type="number" id="ah-superficie" name="superficie" placeholder="Ex. : 1500" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Équipements <span class="required">*</span></label>
+                <div class="checkbox-grid">
+                  <label class="check-option">
+                    <input type="checkbox" name="equipements" value="piscine" />
+                    <span>🏊 Piscine</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="equipements" value="alarme" />
+                    <span>🚨 Système d'alarme</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="equipements" value="spa" />
+                    <span>♨️ Spa / bain tourbillon</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="equipements" value="commerce" />
+                    <span>💼 Bureau à domicile / commerce</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ah-valeur-biens">Valeur estimée de vos biens personnels</label>
+                <select id="ah-valeur-biens" name="valeur-biens">
+                  <option value="">-- Optionnel --</option>
+                  <option>Moins de 30 000 $</option>
+                  <option>30 000 $ à 60 000 $</option>
+                  <option>60 000 $ à 100 000 $</option>
+                  <option>Plus de 100 000 $</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="ah-assureur-actuel">Assureur actuel (si applicable)</label>
+                <input type="text" id="ah-assureur-actuel" name="assureur-actuel" placeholder="Ex. : Intact, Belairdirect, Promutuel..." />
+              </div>
+              <div class="form-group">
+                <label for="ah-renouvellement">Date de renouvellement approximative</label>
+                <input type="month" id="ah-renouvellement" name="renouvellement" />
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="ahGoToStep(2)">← Retour</button>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 4 : Documents -->
+          <div class="tunnel-step" id="ah-step-4">
+            <div class="step-header">
+              <div class="step-badge">Étape 4 sur 5</div>
+              <h1 class="step-title">Documents (optionnel)</h1>
+              <p class="step-subtitle">Accélérez votre soumission en déposant vos documents existants.</p>
+            </div>
+            <div class="step-form">
+              <div class="upload-zone" id="ah-upload-zone">
+                <div class="upload-icon">📄</div>
+                <p class="upload-title">Déposez vos documents ici</p>
+                <p class="upload-desc">Certificat d'assurance actuel, renouvellement, permis de conduire, acte de propriété...</p>
+                <p class="upload-hint">PDF, JPG ou PNG – Max 20 Mo par fichier</p>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('ah-files').click()">
+                  + Choisir des fichiers
+                </button>
+                <input type="file" id="ah-files" name="files" accept=".pdf,.jpg,.jpeg,.png" multiple class="file-input" />
+              </div>
+              <div class="file-list" id="ah-file-list"></div>
+
+              <div class="upload-examples">
+                <p class="upload-examples-title">Documents utiles :</p>
+                <div class="upload-chips">
+                  <span class="chip">✓ Certificat d'assurance actuel</span>
+                  <span class="chip">✓ Avis de renouvellement</span>
+                  <span class="chip">✓ Permis de conduire</span>
+                  <span class="chip">✓ Acte de propriété</span>
+                  <span class="chip">✓ Offre d'achat (nouveau véhicule)</span>
+                </div>
+              </div>
+
+              <div class="upload-security-note">
+                <span>🔒</span>
+                <p>Vos documents sont chiffrés et transmis de façon sécurisée. Ils sont utilisés uniquement pour traiter votre demande.</p>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="ahGoToStep(3)">← Retour</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="ahGoToStep(5)">Continuer →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 5 : Confirmation -->
+          <div class="tunnel-step" id="ah-step-5">
+            <div class="step-header">
+              <div class="step-badge">Étape 5 sur 5</div>
+              <h1 class="step-title">Confirmation &amp; envoi</h1>
+              <p class="step-subtitle">Vérifiez vos informations et transmettez votre demande en toute confiance.</p>
+            </div>
+            <div class="step-form">
+              <div class="recap-card">
+                <h3 class="recap-title">Résumé de votre demande</h3>
+                <div class="recap-grid" id="ah-recap-content">
+                  <!-- Rempli par JS -->
+                </div>
+              </div>
+
+              <div class="form-group form-consent">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="ah-consentement" name="consentement" required />
+                  <span class="checkbox-custom"></span>
+                  <span>Je consens à la collecte et au traitement de mes informations à des fins de soumission d'assurance. <a href="#" class="link">Politique de confidentialité</a></span>
+                </label>
+              </div>
+
+              <div class="consent-details">
+                <div class="consent-item"><span>🔒</span> Données utilisées uniquement pour cette demande</div>
+                <div class="consent-item"><span>✓</span> 100% sécurisé et confidentiel</div>
+                <div class="consent-item"><span>🤝</span> Sans engagement de votre part</div>
+              </div>
+
+              <button type="button" class="btn btn-primary btn-lg btn-full" id="ah-submit-btn" onclick="submitAHForm()">
+                <span class="btn-text">Transmettre ma demande →</span>
+              </button>
+              <div class="step-nav" style="margin-top: 1rem;">
+                <button type="button" class="btn btn-outline" onclick="ahGoToStep(4)">← Retour</button>
+                <span></span>
+              </div>
+            </div>
+
+            <!-- Succès -->
+            <div class="tunnel-success" id="ah-tunnel-success" style="display:none;">
+              <div class="success-confetti">🎉</div>
+              <div class="success-icon-lg">✅</div>
+              <h2>Demande transmise avec succès&nbsp;!</h2>
+              <p>Merci. Un courtier spécialisé analysera votre dossier et vous contactera <strong>dans les 24 heures ouvrables</strong>.</p>
+              <div class="success-ref">
+                Référence : <strong id="ah-ref-numero"></strong>
+              </div>
+              <div class="success-next">
+                <h4>Prochaines étapes</h4>
+                <div class="next-steps-mini">
+                  <div class="next-step-item">
+                    <span class="ns-icon">📧</span>
+                    <span>Confirmation par courriel envoyée</span>
+                  </div>
+                  <div class="next-step-item">
+                    <span class="ns-icon">🔍</span>
+                    <span>Comparaison des meilleures options</span>
+                  </div>
+                  <div class="next-step-item">
+                    <span class="ns-icon">📋</span>
+                    <span>Présentation des soumissions dans 24h</span>
+                  </div>
+                </div>
+              </div>
+              <div class="success-actions">
+                <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+                <a href="tunnel-cyber.html" class="btn btn-primary">Soumission cyberassurance</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar droite -->
+        <aside class="tunnel-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">Votre économie potentielle</div>
+            <div class="savings-display">
+              <strong class="savings-amount text-green">Jusqu'à 500 $</strong>
+              <span class="savings-period">par année</span>
+            </div>
+            <p class="savings-desc">En comparant plusieurs assureurs, nos clients réalisent des économies réelles sans réduire leurs protections.</p>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-title">Comment ça marche</div>
+            <div class="sidebar-steps">
+              <div class="sidebar-step">
+                <div class="sb-step-icon">✍️</div>
+                <div>
+                  <strong>Votre profil</strong>
+                  <span>Véhicule, résidence, antécédents</span>
+                </div>
+              </div>
+              <div class="sidebar-step">
+                <div class="sb-step-icon">🔍</div>
+                <div>
+                  <strong>Analyse &amp; comparaison</strong>
+                  <span>Plusieurs assureurs comparés</span>
+                </div>
+              </div>
+              <div class="sidebar-step">
+                <div class="sb-step-icon">📋</div>
+                <div>
+                  <strong>Vos options</strong>
+                  <span>Présentées clairement</span>
+                </div>
+              </div>
+              <div class="sidebar-step">
+                <div class="sb-step-icon">✅</div>
+                <div>
+                  <strong>Vous choisissez</strong>
+                  <span>Sans pression</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-promise">
+            <div class="promise-icon">⚡</div>
+            <div class="promise-title">Soumissions rapides</div>
+            <p>Réponse de votre courtier en moins de 24 heures ouvrables.</p>
+            <div class="promise-tag">100% gratuit</div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-title">Actions rapides</div>
+            <a href="index.html#contact" class="sidebar-action">
+              <span>📞</span>
+              <span>Parler à un courtier</span>
+              <span>›</span>
+            </a>
+            <a href="tunnel-cyber.html" class="sidebar-action">
+              <span>🔐</span>
+              <span>Soumission cyberassurance</span>
+              <span>›</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="tunnel-footer">
+    <div class="container">
+      <p>© 2025 Les Règles d'OR Consulting inc. · <a href="#">Confidentialité</a> · <a href="#">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/tunnel-auto-habitation.js"></script>
+</body>
+</html>
