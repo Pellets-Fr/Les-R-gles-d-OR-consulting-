@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soumission cyberassurance – HCourtage | Houssem El Ghoul</title>
+  <meta name="description" content="Obtenez votre soumission de cyberassurance en quelques minutes. Comparez les meilleures options pour protéger votre entreprise." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="tunnel-page">
+
+  <header class="tunnel-header">
+    <div class="container tunnel-header-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="https://hcourtage.ca/Particuliers/img/logo.svg" alt="Houssem El Ghoul – Courtier en assurances" class="nav-logo-img" />
+      </a>
+      <div class="tunnel-header-right">
+        <span class="lock-badge">🔒 Vos données sont protégées</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="tunnel-main">
+    <div class="container tunnel-container">
+
+      <!-- Barre de progression -->
+      <div class="tunnel-progress">
+        <div class="progress-steps" id="progress-steps">
+          <div class="progress-step active" data-step="1">
+            <div class="progress-dot"></div>
+            <span>Entreprise</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="2">
+            <div class="progress-dot"></div>
+            <span>Risques</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="3">
+            <div class="progress-dot"></div>
+            <span>Protection actuelle</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="4">
+            <div class="progress-dot"></div>
+            <span>Documents</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="5">
+            <div class="progress-dot"></div>
+            <span>Confirmation</span>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progress-bar" style="width:20%"></div>
+        </div>
+      </div>
+
+      <div class="tunnel-layout">
+        <div class="tunnel-form-area">
+
+          <!-- ÉTAPE 1 : Informations entreprise -->
+          <div class="tunnel-step active" id="step-1">
+            <div class="step-header">
+              <div class="step-badge">Étape 1 sur 5</div>
+              <h1 class="step-title">Votre entreprise</h1>
+              <p class="step-subtitle">Ces informations nous permettent d'évaluer votre profil de risque et de vous proposer les meilleures options.</p>
+            </div>
+            <form class="step-form" id="form-step-1" novalidate>
+              <div class="form-group">
+                <label for="c-nom-entreprise">Nom de l'entreprise <span class="required">*</span></label>
+                <input type="text" id="c-nom-entreprise" name="nom-entreprise" placeholder="Ex. : Acme Technologies inc." required />
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-prenom">Prénom du contact <span class="required">*</span></label>
+                  <input type="text" id="c-prenom" name="prenom" placeholder="Marc" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="c-nom">Nom <span class="required">*</span></label>
+                  <input type="text" id="c-nom" name="nom" placeholder="Tremblay" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-email">Courriel <span class="required">*</span></label>
+                  <input type="email" id="c-email" name="email" placeholder="marc@acme.com" required />
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="c-tel">Téléphone</label>
+                  <input type="tel" id="c-tel" name="telephone" placeholder="(514) 555-1234" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-secteur">Secteur d'activité <span class="required">*</span></label>
+                  <select id="c-secteur" name="secteur" required>
+                    <option value="">-- Sélectionnez --</option>
+                    <option>Technologies / Informatique / SaaS</option>
+                    <option>Services professionnels (comptabilité, droit, conseil)</option>
+                    <option>Santé / Cliniques / Services médicaux</option>
+                    <option>Finance / Courtage / Assurance</option>
+                    <option>Commerce de détail / e-commerce</option>
+                    <option>Construction / Génie</option>
+                    <option>Éducation</option>
+                    <option>Fabrication / Manufacturier</option>
+                    <option>Transport / Logistique</option>
+                    <option>Autre</option>
+                  </select>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="c-employes">Nombre d'employés <span class="required">*</span></label>
+                  <select id="c-employes" name="employes" required>
+                    <option value="">-- Sélectionnez --</option>
+                    <option>1 à 5 employés</option>
+                    <option>6 à 25 employés</option>
+                    <option>26 à 100 employés</option>
+                    <option>101 à 500 employés</option>
+                    <option>500 employés et plus</option>
+                  </select>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-chiffre">Chiffre d'affaires annuel approximatif</label>
+                <select id="c-chiffre" name="chiffre-affaires">
+                  <option value="">-- Optionnel --</option>
+                  <option>Moins de 500 000 $</option>
+                  <option>500 000 $ à 2 M$</option>
+                  <option>2 M$ à 10 M$</option>
+                  <option>10 M$ à 50 M$</option>
+                  <option>Plus de 50 M$</option>
+                </select>
+              </div>
+              <div class="step-nav">
+                <span></span>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 2 : Risques et données -->
+          <div class="tunnel-step" id="step-2">
+            <div class="step-header">
+              <div class="step-badge">Étape 2 sur 5</div>
+              <h1 class="step-title">Vos risques &amp; données</h1>
+              <p class="step-subtitle">Identifiez les types de données que vous traitez et les menaces qui vous préoccupent.</p>
+            </div>
+            <form class="step-form" id="form-step-2" novalidate>
+              <div class="form-group">
+                <label>Types de données sensibles traitées <span class="required">*</span></label>
+                <div class="checkbox-grid">
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="clients" />
+                    <span>👥 Données clients / prospects</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="medicales" />
+                    <span>🏥 Données médicales / santé</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="financieres" />
+                    <span>💳 Données financières / paiements</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="employes" />
+                    <span>👤 Données employés / RH</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="propriete-intel" />
+                    <span>💡 Propriété intellectuelle</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="donnees" value="infrastructure" />
+                    <span>🏗️ Infrastructure critique / OT</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Préoccupations principales <span class="required">*</span></label>
+                <div class="checkbox-grid">
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="ransomware" />
+                    <span>🔐 Ransomware &amp; extorsion</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="fuite" />
+                    <span>🚨 Fuite de données clients</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="interruption" />
+                    <span>⏸️ Interruption d'activité</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="responsabilite" />
+                    <span>⚖️ Responsabilité civile cyber</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="conformite" />
+                    <span>📋 Conformité Loi 25 / RGPD</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="risques" value="fraude" />
+                    <span>🎭 Fraude / ingénierie sociale</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-dependance">Dépendance aux systèmes informatiques <span class="required">*</span></label>
+                <select id="c-dependance" name="dependance-it" required>
+                  <option value="">-- Sélectionnez --</option>
+                  <option>Critique – l'arrêt des systèmes arrête tout</option>
+                  <option>Élevée – impact majeur mais activité partielle possible</option>
+                  <option>Modérée – fonctionnement dégradé possible</option>
+                  <option>Faible – activité possible sans les systèmes</option>
+                </select>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="c-incident-passe">Avez-vous vécu un incident de sécurité par le passé&nbsp;?</label>
+                <select id="c-incident-passe" name="incident-passe">
+                  <option value="">-- Sélectionnez --</option>
+                  <option value="non">Non, aucun incident</option>
+                  <option value="oui-mineur">Oui, incident mineur résolu</option>
+                  <option value="oui-majeur">Oui, incident majeur</option>
+                  <option value="inconnu">Je ne suis pas certain</option>
+                </select>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(1)">← Retour</button>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 3 : Protection actuelle -->
+          <div class="tunnel-step" id="step-3">
+            <div class="step-header">
+              <div class="step-badge">Étape 3 sur 5</div>
+              <h1 class="step-title">Votre protection actuelle</h1>
+              <p class="step-subtitle">Ces informations nous permettent d'identifier vos lacunes et de vous proposer des protections complémentaires.</p>
+            </div>
+            <form class="step-form" id="form-step-3" novalidate>
+              <div class="form-group">
+                <label for="c-assurance-cyber">Avez-vous déjà une cyberassurance&nbsp;? <span class="required">*</span></label>
+                <select id="c-assurance-cyber" name="assurance-cyber-actuelle" required>
+                  <option value="">-- Sélectionnez --</option>
+                  <option value="non">Non, aucune couverture cyber</option>
+                  <option value="oui-incluse">Oui, incluse dans ma police commerciale</option>
+                  <option value="oui-specifique">Oui, une police cyber distincte</option>
+                  <option value="inconnu">Je ne suis pas certain</option>
+                </select>
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group" id="assureur-actuel-group" style="display:none;">
+                <label for="c-assureur-actuel">Nom de votre assureur actuel</label>
+                <input type="text" id="c-assureur-actuel" name="assureur-actuel" placeholder="Ex. : Intact, Desjardins, Belairdirect..." />
+              </div>
+              <div class="form-group" id="renouvellement-group" style="display:none;">
+                <label for="c-renouvellement">Date de renouvellement approximative</label>
+                <input type="month" id="c-renouvellement" name="renouvellement" />
+              </div>
+              <div class="form-group">
+                <label>Mesures de sécurité en place <span class="required">*</span></label>
+                <div class="checkbox-grid">
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="antivirus" />
+                    <span>🛡️ Antivirus / EDR</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="mfa" />
+                    <span>🔑 Authentification multifacteur (MFA)</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="backup" />
+                    <span>💾 Sauvegardes régulières (offline)</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="formation" />
+                    <span>📚 Formation des employés</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="pare-feu" />
+                    <span>🔥 Pare-feu / Firewall</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="plan-incident" />
+                    <span>📋 Plan de réponse aux incidents</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="chiffrement" />
+                    <span>🔐 Chiffrement des données</span>
+                  </label>
+                  <label class="check-option">
+                    <input type="checkbox" name="securite" value="aucun" />
+                    <span>❌ Aucune mesure spécifique</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-budget">Budget annuel envisagé pour la cyberassurance</label>
+                <select id="c-budget" name="budget">
+                  <option value="">-- Optionnel --</option>
+                  <option>Moins de 2 000 $ / an</option>
+                  <option>2 000 $ à 5 000 $ / an</option>
+                  <option>5 000 $ à 15 000 $ / an</option>
+                  <option>15 000 $ à 50 000 $ / an</option>
+                  <option>Plus de 50 000 $ / an</option>
+                  <option>Je ne sais pas encore</option>
+                </select>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(2)">← Retour</button>
+                <button type="submit" class="btn btn-primary btn-lg">Continuer →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 4 : Documents -->
+          <div class="tunnel-step" id="step-4">
+            <div class="step-header">
+              <div class="step-badge">Étape 4 sur 5</div>
+              <h1 class="step-title">Documents (optionnel)</h1>
+              <p class="step-subtitle">Déposez vos documents existants pour accélérer l'analyse et obtenir une soumission plus précise.</p>
+            </div>
+            <div class="step-form">
+              <div class="upload-zone" id="upload-zone">
+                <div class="upload-icon">📄</div>
+                <p class="upload-title">Déposez vos documents ici</p>
+                <p class="upload-desc">Police actuelle, renouvellement, questionnaire de sécurité, rapport d'audit...</p>
+                <p class="upload-hint">PDF, JPG ou PNG – Max 20 Mo par fichier</p>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('c-files').click()">
+                  + Choisir des fichiers
+                </button>
+                <input type="file" id="c-files" name="files" accept=".pdf,.jpg,.jpeg,.png" multiple class="file-input" />
+              </div>
+              <div class="file-list" id="file-list"></div>
+
+              <div class="upload-examples">
+                <p class="upload-examples-title">Documents utiles :</p>
+                <div class="upload-chips">
+                  <span class="chip">✓ Police d'assurance actuelle</span>
+                  <span class="chip">✓ Certificat d'assurance</span>
+                  <span class="chip">✓ Questionnaire de sécurité</span>
+                  <span class="chip">✓ Rapport d'audit IT</span>
+                  <span class="chip">✓ Politique de sécurité</span>
+                </div>
+              </div>
+
+              <div class="upload-security-note">
+                <span>🔒</span>
+                <p>Vos documents sont chiffrés, transmis de façon sécurisée et utilisés uniquement pour traiter votre demande. Ils sont supprimés après analyse.</p>
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(3)">← Retour</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="goToStep(5)">Continuer →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 5 : Confirmation -->
+          <div class="tunnel-step" id="step-5">
+            <div class="step-header">
+              <div class="step-badge">Étape 5 sur 5</div>
+              <h1 class="step-title">Confirmation &amp; envoi</h1>
+              <p class="step-subtitle">Vérifiez vos informations et consentez à la transmission de votre dossier.</p>
+            </div>
+            <div class="step-form">
+              <div class="recap-card">
+                <h3 class="recap-title">Résumé de votre demande</h3>
+                <div class="recap-grid" id="recap-content">
+                  <!-- Rempli par JS -->
+                </div>
+              </div>
+
+              <div class="form-group form-consent">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="c-consentement" name="consentement" required />
+                  <span class="checkbox-custom"></span>
+                  <span>Je confirme avoir pris connaissance de la <a href="#" class="link">politique de confidentialité</a> et je consens à la collecte et au traitement de mes informations à des fins de soumission d'assurance.</span>
+                </label>
+              </div>
+
+              <div class="consent-details">
+                <div class="consent-item">
+                  <span>🔒</span> Données utilisées uniquement pour cette demande
+                </div>
+                <div class="consent-item">
+                  <span>✓</span> 100% sécurisé et confidentiel
+                </div>
+                <div class="consent-item">
+                  <span>🤝</span> Sans engagement de votre part
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary btn-lg btn-full" id="c-submit-btn" onclick="submitCyberForm()">
+                <span class="btn-text">Transmettre ma demande →</span>
+              </button>
+              <div class="step-nav" style="margin-top: 1rem;">
+                <button type="button" class="btn btn-outline" onclick="goToStep(4)">← Retour</button>
+                <span></span>
+              </div>
+            </div>
+
+            <!-- Succès -->
+            <div class="tunnel-success" id="tunnel-success" style="display:none;">
+              <div class="success-confetti">🎉</div>
+              <div class="success-icon-lg">✅</div>
+              <h2>Demande transmise avec succès&nbsp;!</h2>
+              <p>Merci. Un courtier spécialisé en cyberassurance analysera votre dossier et vous contactera <strong>dans les 24 heures ouvrables</strong>.</p>
+              <div class="success-ref">
+                Référence : <strong id="c-ref-numero"></strong>
+              </div>
+              <div class="success-next">
+                <h4>Prochaines étapes</h4>
+                <div class="next-steps-mini">
+                  <div class="next-step-item">
+                    <span class="ns-icon">📧</span>
+                    <span>Confirmation par courriel envoyée</span>
+                  </div>
+                  <div class="next-step-item">
+                    <span class="ns-icon">🔍</span>
+                    <span>Analyse de votre dossier en cours</span>
+                  </div>
+                  <div class="next-step-item">
+                    <span class="ns-icon">📋</span>
+                    <span>Présentation des options dans 24h</span>
+                  </div>
+                </div>
+              </div>
+              <div class="success-actions">
+                <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+                <a href="tunnel-auto-habitation.html" class="btn btn-primary">Soumission auto/habitation</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar droite -->
+        <aside class="tunnel-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">Comment ça marche</div>
+            <div class="sidebar-steps">
+              <div class="sidebar-step" id="sb-step-1">
+                <div class="sb-step-icon">✍️</div>
+                <div>
+                  <strong>Vous décrivez votre entreprise</strong>
+                  <span>Secteur, taille, données traitées</span>
+                </div>
+              </div>
+              <div class="sidebar-step" id="sb-step-2">
+                <div class="sb-step-icon">🔍</div>
+                <div>
+                  <strong>On analyse vos risques</strong>
+                  <span>Identification des vulnérabilités</span>
+                </div>
+              </div>
+              <div class="sidebar-step" id="sb-step-3">
+                <div class="sb-step-icon">📋</div>
+                <div>
+                  <strong>Comparaison des options</strong>
+                  <span>Meilleures offres du marché</span>
+                </div>
+              </div>
+              <div class="sidebar-step" id="sb-step-4">
+                <div class="sb-step-icon">✅</div>
+                <div>
+                  <strong>Vous choisissez</strong>
+                  <span>Sans pression, à votre rythme</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-promise">
+            <div class="promise-icon">⚡</div>
+            <div class="promise-title">Cotations rapides</div>
+            <p>Votre courtier vous contacte dans les 24 heures ouvrables avec les meilleures options disponibles.</p>
+            <div class="promise-tag">Service 100% gratuit</div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-title">Actions rapides</div>
+            <a href="#" class="sidebar-action">
+              <span>📞</span>
+              <span>Appeler un courtier maintenant</span>
+              <span>›</span>
+            </a>
+            <a href="index.html#contact" class="sidebar-action">
+              <span>✉️</span>
+              <span>Envoyer un message</span>
+              <span>›</span>
+            </a>
+            <a href="tunnel-auto-habitation.html" class="sidebar-action">
+              <span>🚗</span>
+              <span>Soumission auto/habitation</span>
+              <span>›</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="tunnel-footer">
+    <div class="container">
+      <p>© 2025 Houssem El Ghoul · Affilié au Groupe Jetté Assurances inc. · <a href="#">Confidentialité</a> · <a href="#">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/tunnel-cyber.js"></script>
+</body>
+</html>
