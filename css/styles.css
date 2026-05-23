@@ -178,6 +178,57 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a:hover { color: var(--blue-500); }
 
+/* Logo image nav */
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Logo image footer */
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  margin-bottom: .5rem;
+  filter: brightness(0) invert(1); /* logo blanc sur fond sombre */
+}
+
+/* Photo Houssem dans le hero */
+.hero-photo-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.hero-photo {
+  width: 100%;
+  max-width: 340px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  box-shadow: var(--shadow-xl);
+  display: block;
+}
+.hero-photo-badge {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: .65rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+}
+.hero-photo-badge-icon { font-size: 1.4rem; }
+.hero-photo-badge div { display: flex; flex-direction: column; }
+.hero-photo-badge strong { font-size: .85rem; font-weight: 700; color: var(--gray-900); }
+.hero-photo-badge span   { font-size: .72rem; color: var(--green-600); font-weight: 600; }
+
 .nav-cta { margin-left: auto; display: none; }
 
 .nav-toggle {
